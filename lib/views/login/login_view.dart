@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
+import 'package:romaniz/views/home/home_view.dart';
+import 'package:romaniz/views/side_menu/side_menu_view.dart';
 
 class LoginView extends StatelessWidget {
+  static const String route = '/login';
   const LoginView({super.key});
 
   @override
@@ -56,7 +60,8 @@ class LoginView extends StatelessWidget {
                         ),
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () =>
+                                Navigator.of(context).pushNamed(HomeView.routePrefixHome + DashboardView.route),
                             child: const Text('Entrar'),
                           ),
                         ),
