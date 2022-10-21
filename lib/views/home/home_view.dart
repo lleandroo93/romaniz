@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
+import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
+import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 import 'package:romaniz/views/home/sidebar_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -51,6 +53,12 @@ Route _onGenerateRoute(RouteSettings settings) {
       break;
     case AgendaView.route:
       page = const AgendaView();
+      break;
+    case CadastrarEventoView.route:
+      page = const CadastrarEventoView();
+      break;
+    case CadastrarPessoasView.route:
+      page = const CadastrarPessoasView();
       break;
   }
 

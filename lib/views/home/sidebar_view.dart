@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
+import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({
@@ -42,7 +43,7 @@ class SideBar extends StatelessWidget {
           ),
           ListTile(
             title: const Text('Pessoas'),
-            onTap: () {},
+            onTap: () => onSelectedRoute(CadastrarPessoasView.route),
           ),
           ListTile(
             title: const Text('Exatos'),
