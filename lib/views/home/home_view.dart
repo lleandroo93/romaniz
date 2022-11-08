@@ -55,7 +55,7 @@ Route _onGenerateRoute(RouteSettings settings) {
       page = const AgendaView();
       break;
     case CadastrarEventoView.route:
-      page = const CadastrarEventoView();
+      page = CadastrarEventoView();
       break;
     case CadastrarPessoasView.route:
       page = const CadastrarPessoasView();
