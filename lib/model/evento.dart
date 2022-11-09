@@ -6,11 +6,11 @@ part 'evento.g.dart';
 class Evento {
   DateTime data;
   String titulo;
-  String descricao;
-  String municipio;
-  String bairro;
-  String endereco;
-  String observacoes;
+  String? descricao;
+  String? municipio;
+  String? bairro;
+  String? endereco;
+  String? observacao;
 
   Evento({
     required this.data,
@@ -19,7 +19,7 @@ class Evento {
     required this.municipio,
     required this.bairro,
     required this.endereco,
-    required this.observacoes,
+    required this.observacao,
   });
 
   factory Evento.fromJson(Map<String, dynamic> json) => _$EventoFromJson(json);

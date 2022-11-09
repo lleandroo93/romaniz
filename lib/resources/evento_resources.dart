@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/model/evento.dart';
@@ -15,6 +16,7 @@ class EventoResources {
   }
 
   Future<Evento?> criar(Evento evento) async {
+    debugPrint(jsonEncode(evento));
     final response = await http.post(
       Endpoints.criarEventos,
       headers: <String, String>{

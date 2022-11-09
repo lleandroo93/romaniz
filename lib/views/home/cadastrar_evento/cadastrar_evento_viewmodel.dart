@@ -39,7 +39,7 @@ class CadastrarEventoViewModel {
       municipio: cidadeSelecionada?.nome ?? '',
       bairro: bairroSelecionado?.nome ?? '',
       endereco: endereco ?? '',
-      observacoes: observacoes ?? '',
+      observacao: observacoes ?? '',
     );
     EventoResources().criar(evento);
   }

@@ -54,10 +54,11 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
           child: Column(
             children: [
               const Text('CADASTRAR EVENTO', style: TextStyle(fontSize: 36, color: Colors.blue)),
-              const _FormWidget(iconData: Icons.abc, label: 'Nome do evento'),
-              const _FormWidget(iconData: Icons.person, label: 'Contato'),
-              const _FormWidget(iconData: Icons.date_range, label: 'Data do agendamento'),
-              const _FormWidget(iconData: Icons.notes, label: 'Resumo'),
+              _FormWidget(iconData: Icons.abc, label: 'Nome do evento', controller: _nomeEventoController),
+              _FormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
+              _FormWidget(
+                  iconData: Icons.date_range, label: 'Data do agendamento', controller: _dataAgendamentoController),
+              _FormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
               Observer(builder: (_) {
                 return MunicipioDropDownWidget(
                   cidades: viewModel.cidades,

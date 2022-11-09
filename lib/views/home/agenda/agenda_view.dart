@@ -1,5 +1,6 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:romaniz/views/home/agenda/agenda_viewmodel.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
 
 class AgendaView extends StatefulWidget {
@@ -11,14 +12,13 @@ class AgendaView extends StatefulWidget {
 }
 
 class _AgendaViewState extends State<AgendaView> {
-  DateTime dateTime = DateTime.now();
-  final dateViewKey = GlobalKey<DayViewState>();
+  EventController eventController = EventController();
+  AgendaViewModel viewModel = AgendaViewModel();
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
     return CalendarControllerProvider(
-      controller: EventController(),
+      controller: eventController,
       child: MaterialApp(
         home: Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -28,26 +28,59 @@ class _AgendaViewState extends State<AgendaView> {
               size: 56,
             ),
           ),
-          body: Row(
-            children: [
-              MonthView(
-                width: screenSize.width / 2,
-                cellAspectRatio: 1,
-                onCellTap: (events, date) {
-                  setState(() {
-                    dateTime = date;
-                    dateViewKey.currentState?.jumpToDate(date);
-                  });
-                },
-              ),
-              DayView(
-                key: dateViewKey,
-                width: screenSize.width / 3,
-              ),
-            ],
-          ),
+          body: FutureBuilder(
+              future: viewModel.listar(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.hasData) {
+                    final listOfEvents = snapshot.data as List<CalendarEventData>;
+                    eventController.addAll(listOfEvents);
+                  }
+                  return CalendarRow();
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              }),
         ),
       ),
+    );
+  }
+}
+
+class CalendarRow extends StatefulWidget {
+  const CalendarRow({super.key});
+
+  @override
+  State<CalendarRow> createState() => _CalendarRowState();
+}
+
+class _CalendarRowState extends State<CalendarRow> {
+  DateTime dateTime = DateTime.now();
+  final dateViewKey = GlobalKey<DayViewState>();
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Row(
+      children: [
+        MonthView(
+          key: UniqueKey(),
+          controller: CalendarControllerProvider.of(context).controller,
+          width: screenSize.width / 2,
+          cellAspectRatio: 1,
+          onCellTap: (events, date) {
+            setState(() {
+              dateTime = date;
+              dateViewKey.currentState?.jumpToDate(date);
+            });
+          },
+        ),
+        DayView(
+          key: dateViewKey,
+          width: screenSize.width / 3,
+        ),
+      ],
     );
   }
 }

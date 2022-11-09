@@ -9,11 +9,11 @@ part of 'evento.dart';
 Evento _$EventoFromJson(Map<String, dynamic> json) => Evento(
       data: DateTime.parse(json['data'] as String),
       titulo: json['titulo'] as String,
-      descricao: json['descricao'] as String,
-      municipio: json['municipio'] as String,
-      bairro: json['bairro'] as String,
-      endereco: json['endereco'] as String,
-      observacoes: json['observacoes'] as String,
+      descricao: json['descricao'] as String?,
+      municipio: json['municipio'] as String?,
+      bairro: json['bairro'] as String?,
+      endereco: json['endereco'] as String?,
+      observacao: json['observacao'] as String?,
     );
 
 Map<String, dynamic> _$EventoToJson(Evento instance) => <String, dynamic>{
@@ -23,5 +23,5 @@ Map<String, dynamic> _$EventoToJson(Evento instance) => <String, dynamic>{
       'municipio': instance.municipio,
       'bairro': instance.bairro,
       'endereco': instance.endereco,
-      'observacoes': instance.observacoes,
+      'observacao': instance.observacao,
     };
