@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:romaniz/views/home/home_view.dart';
 import 'package:romaniz/views/login/login_view.dart';
 
@@ -11,29 +12,43 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    final GoRouter _router = GoRouter(
+      routes: <GoRoute>[
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const LoginView(),
+        ),
+        GoRoute(
+          path: '/home',
+          builder: (context, state) => const HomeView(),
+        )
+      ],
+    );
+
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginView(),
-      onGenerateRoute: (settings) {
-        late Widget page;
-        if (settings.name == LoginView.route) {
-          page = LoginView();
-        } else if (settings.name!.startsWith(HomeView.routePrefixHome)) {
-          final subRoute = settings.name!.substring(HomeView.routePrefixHome.length);
-          page = HomeView(
-            setupPageRoute: subRoute,
-          );
-        }
-        return MaterialPageRoute<dynamic>(
-          builder: (context) {
-            return page;
-          },
-          settings: settings,
-        );
-      },
+      // home: const LoginView(),
+      routerConfig: _router,
+      // onGenerateRoute: (settings) {
+      //   late Widget page;
+      //   if (settings.name == LoginView.route) {
+      //     page = LoginView();
+      //   } else if (settings.name!.startsWith(HomeView.routePrefixHome)) {
+      //     final subRoute = settings.name!.substring(HomeView.routePrefixHome.length);
+      //     page = HomeView(
+      //       setupPageRoute: subRoute,
+      //     );
+      //   }
+      //   return MaterialPageRoute<dynamic>(
+      //     builder: (context) {
+      //       return page;
+      //     },
+      //     settings: settings,
+      //   );
+      // },
     );
   }
 }

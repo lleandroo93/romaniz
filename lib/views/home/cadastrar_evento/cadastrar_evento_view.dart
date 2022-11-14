@@ -56,8 +56,31 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
               const Text('CADASTRAR EVENTO', style: TextStyle(fontSize: 36, color: Colors.blue)),
               _FormWidget(iconData: Icons.abc, label: 'Nome do evento', controller: _nomeEventoController),
               _FormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
-              _FormWidget(
-                  iconData: Icons.date_range, label: 'Data do agendamento', controller: _dataAgendamentoController),
+              InkWell(
+                onTap: () async {
+                  DateTime? selectedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2022),
+                    lastDate: DateTime(2032),
+                  );
+                  if (selectedDate != null) {
+                    _dataAgendamentoController!.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
+                    TimeOfDay? selectedTime = await showTimePicker(
+                      context: context,
+                      initialTime: TimeOfDay.now(),
+                    );
+                    if (selectedTime != null) {
+                      _dataAgendamentoController!.text =
+                          '${_dataAgendamentoController!.text} ${selectedTime.hour}:${selectedTime.minute}';
+                    }
+                  }
+                },
+                child: IgnorePointer(
+                  child: _FormWidget(
+                      iconData: Icons.date_range, label: 'Data do agendamento', controller: _dataAgendamentoController),
+                ),
+              ),
               _FormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
               Observer(builder: (_) {
                 return MunicipioDropDownWidget(

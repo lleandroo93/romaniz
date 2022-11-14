@@ -8,11 +8,8 @@ import 'package:romaniz/views/home/sidebar_view.dart';
 class HomeView extends StatefulWidget {
   static const String routePrefixHome = '/home/';
 
-  final String setupPageRoute;
-
   const HomeView({
     super.key,
-    required this.setupPageRoute,
   });
 
   @override

@@ -1,4 +1,5 @@
 import 'package:calendar_view/calendar_view.dart';
+import 'package:flutter/widgets.dart';
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
 import 'package:romaniz/model/evento.dart';
@@ -23,6 +24,7 @@ class CadastrarEventoViewModel {
   }
 
   CadastrarEventoViewModel() {
+    debugPrint('CadastrarEventoViewModel constructor called');
     _buscarCidades();
   }
 
