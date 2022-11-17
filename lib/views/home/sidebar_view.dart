@@ -34,14 +34,17 @@ class SideBar extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: const Icon(Icons.dashboard),
             title: const Text('Dashboard'),
             onTap: () => onSelectedRoute(DashboardView.route),
           ),
           ListTile(
+            leading: const Icon(Icons.view_agenda),
             title: const Text('Agenda'),
             onTap: () => onSelectedRoute(AgendaView.route),
           ),
           ListTile(
+            leading: const Icon(Icons.people),
             title: const Text('Pessoas'),
             onTap: () => onSelectedRoute(CadastrarPessoasView.route),
           ),

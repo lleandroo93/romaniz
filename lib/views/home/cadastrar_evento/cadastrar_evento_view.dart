@@ -55,7 +55,31 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
             children: [
               const Text('CADASTRAR EVENTO', style: TextStyle(fontSize: 36, color: Colors.blue)),
               _FormWidget(iconData: Icons.abc, label: 'Nome do evento', controller: _nomeEventoController),
-              _FormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
+              InkWell(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Column(children: [
+                          TextFormField(
+                            autofocus: true,
+                            decoration: InputDecoration(
+                                label: Text('Pesquisar'),
+                                icon: Icon(
+                                  Icons.search,
+                                )),
+                          ),
+                          Text('some text'),
+                        ]),
+                      );
+                    },
+                  );
+                },
+                child: IgnorePointer(
+                  child: _FormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
+                ),
+              ),
               InkWell(
                 onTap: () async {
                   DateTime? selectedDate = await showDatePicker(
