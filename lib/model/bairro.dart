@@ -13,4 +13,7 @@ class Bairro {
   });
 
   factory Bairro.fromJson(Map<String, dynamic> json) => _$BairroFromJson(json);
+
+  @override
+  String toString() => nome;
 }

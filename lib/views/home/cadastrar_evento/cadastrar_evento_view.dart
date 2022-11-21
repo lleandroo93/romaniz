@@ -1,9 +1,10 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:romaniz/views/home/cadastrar_evento/bairro_dropdown_widget%20.dart';
+import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_viewmodel.dart';
-import 'package:romaniz/views/home/cadastrar_evento/municipio_dropdown_widget.dart';
+import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
+import 'package:romaniz/widgets/my_text_form_widget.dart';
 
 class CadastrarEventoView extends StatefulWidget {
   static const String route = 'cadastrar-evento';
@@ -54,7 +55,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
           child: Column(
             children: [
               const Text('CADASTRAR EVENTO', style: TextStyle(fontSize: 36, color: Colors.blue)),
-              _FormWidget(iconData: Icons.abc, label: 'Nome do evento', controller: _nomeEventoController),
+              MyTextFormWidget(iconData: Icons.abc, label: 'Nome do evento', controller: _nomeEventoController),
               InkWell(
                 onTap: () {
                   showDialog(
@@ -77,7 +78,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   );
                 },
                 child: IgnorePointer(
-                  child: _FormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
+                  child: MyTextFormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
                 ),
               ),
               InkWell(
@@ -101,11 +102,11 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   }
                 },
                 child: IgnorePointer(
-                  child: _FormWidget(
+                  child: MyTextFormWidget(
                       iconData: Icons.date_range, label: 'Data do agendamento', controller: _dataAgendamentoController),
                 ),
               ),
-              _FormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
+              MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
               Observer(builder: (_) {
                 return MunicipioDropDownWidget(
                   cidades: viewModel.cidades,
@@ -118,8 +119,8 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   onChanged: (bairro) => viewModel.bairroSelecionado = bairro,
                 );
               }),
-              const _FormWidget(iconData: Icons.pin_drop, label: 'Endereço'),
-              const _FormWidget(iconData: Icons.comment, label: 'Observações'),
+              const MyTextFormWidget(iconData: Icons.pin_drop, label: 'Endereço'),
+              const MyTextFormWidget(iconData: Icons.comment, label: 'Observações'),
               Padding(
                 padding: const EdgeInsets.all(36.0),
                 child: ElevatedButton(onPressed: _cadastrar, child: const Text('Cadastrar evento')),
@@ -143,35 +144,6 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
       event,
       endereco: _enderecoController?.text,
       observacoes: _observacoesController?.text,
-    );
-  }
-}
-
-class _FormWidget extends StatelessWidget {
-  final IconData iconData;
-  final String label;
-  final TextEditingController? controller;
-  const _FormWidget({
-    super.key,
-    required this.iconData,
-    required this.label,
-    this.controller,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              label: Text(label),
-              icon: Icon(iconData),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

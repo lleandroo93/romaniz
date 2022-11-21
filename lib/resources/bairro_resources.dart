@@ -9,7 +9,7 @@ class BairroResources {
   Future<List<Bairro>> listarPorCidade(Cidade cidade) async {
     final response = await http.get(Endpoints.listarBairrosPorCidade(cidade));
     if (response.statusCode == 200) {
-      return (jsonDecode(response.body) as List).map((e) => Bairro.fromJson(e)).toList();
+      return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((e) => Bairro.fromJson(e)).toList();
     } else {
       return [];
     }
