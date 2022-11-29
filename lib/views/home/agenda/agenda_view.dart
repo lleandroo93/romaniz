@@ -22,7 +22,7 @@ class _AgendaViewState extends State<AgendaView> {
       child: MaterialApp(
         home: Scaffold(
           floatingActionButton: FloatingActionButton(
-            onPressed: () => Navigator.of(context).pushNamed(CadastrarEventoView.route),
+            onPressed: _showCadastroDialog,
             child: const Icon(
               Icons.add,
               size: 56,
@@ -36,12 +36,22 @@ class _AgendaViewState extends State<AgendaView> {
                     final listOfEvents = snapshot.data as List<CalendarEventData>;
                     eventController.addAll(listOfEvents);
                   }
-                  return CalendarRow();
+                  return const CalendarRow();
                 } else {
                   return const Center(child: CircularProgressIndicator());
                 }
               }),
         ),
+      ),
+    );
+  }
+
+  void _showCadastroDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: CadastrarEventoView(),
+        contentPadding: EdgeInsets.zero,
       ),
     );
   }
@@ -76,9 +86,12 @@ class _CalendarRowState extends State<CalendarRow> {
             });
           },
         ),
-        DayView(
-          key: dateViewKey,
-          width: screenSize.width / 3,
+        Flexible(
+          flex: 1,
+          child: DayView(
+            key: dateViewKey,
+            width: screenSize.width / 3,
+          ),
         ),
       ],
     );
