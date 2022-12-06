@@ -1,8 +1,9 @@
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
-import 'package:romaniz/model/pessoa.dart';
+import 'package:romaniz/model/dto/cadastro/cadastro_pessoa_dto.dart';
 import 'package:romaniz/resources/bairro_resources.dart';
 import 'package:romaniz/resources/cidade_resources.dart';
+import 'package:romaniz/resources/pessoa_repository.dart';
 import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_store.dart';
 
 class CadastrarPessoasViewModel {
@@ -29,7 +30,7 @@ class CadastrarPessoasViewModel {
     _store.setCidades(cidades);
   }
 
-  Future cadastrar(Pessoa pessoa) {
-    return Future.delayed(const Duration(seconds: 1));
+  Future cadastrar(CadastroPessoaDto pessoa) {
+    return PessoaRepository().criar(pessoa);
   }
 }

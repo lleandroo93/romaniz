@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
+import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
 import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 import 'package:romaniz/views/home/sidebar_view.dart';
@@ -20,7 +21,7 @@ class _HomeViewState extends State<HomeView> {
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   void _onSelectedRoute(String route) {
-    _navigatorKey.currentState!.pushNamed(route);
+    _navigatorKey.currentState!.pushReplacementNamed(route);
   }
 
   @override
@@ -57,6 +58,8 @@ Route _onGenerateRoute(RouteSettings settings) {
     case CadastrarPessoasView.route:
       page = const CadastrarPessoasView();
       break;
+    case PesquisarContatosView.route:
+      page = const PesquisarContatosView();
   }
 
   return MaterialPageRoute<dynamic>(

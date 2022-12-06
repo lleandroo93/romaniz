@@ -1,6 +1,10 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
 
+part 'pessoa.g.dart';
+
+@JsonSerializable()
 class Pessoa {
   String nome;
   String? grupo;
@@ -21,4 +25,6 @@ class Pessoa {
     this.endereco,
     this.googleMaps,
   });
+
+  factory Pessoa.fromJson(Map<String, dynamic> json) => _$PessoaFromJson(json);
 }

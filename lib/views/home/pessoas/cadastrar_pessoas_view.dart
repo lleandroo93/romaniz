@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:romaniz/constants.dart';
+import 'package:romaniz/model/dto/cadastro/cadastro_pessoa_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_viewmodel.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
@@ -48,54 +50,67 @@ class _CadastrarPessoasViewState extends State<CadastrarPessoasView> {
 
   @override
   Widget build(BuildContext context) {
-    return loading
-        ? const Center(child: CircularProgressIndicator())
-        : Scaffold(
-            body: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
-              child: Column(
-                children: [
-                  const Text('CADASTRAR PESSOA', style: TextStyle(fontSize: 36, color: Colors.blue)),
-                  MyTextFormWidget(iconData: Icons.abc, label: 'Nome', controller: _nomeController),
-                  MyTextFormWidget(iconData: Icons.person, label: 'Grupo', controller: _grupoController),
-                  MyTextFormWidget(iconData: Icons.phone, label: 'Contato', controller: _contatoController),
-                  MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
-                  Observer(builder: (_) {
-                    return MunicipioDropDownWidget(
-                      cidades: viewModel.cidades,
-                      onChanged: (cidade) => viewModel.cidadeSelecionada = cidade,
-                    );
-                  }),
-                  Observer(builder: (_) {
-                    return BairroDropDownWidget(
-                      bairros: viewModel.bairros,
-                      onChanged: (bairro) => viewModel.bairroSelecionado = bairro,
-                    );
-                  }),
-                  MyTextFormWidget(iconData: Icons.pin_drop, label: 'Endereço', controller: _enderecoController),
-                  MyTextFormWidget(
-                      iconData: Icons.room_outlined, label: 'Google Maps', controller: _googleMapsController),
-                  Padding(
-                    padding: const EdgeInsets.all(36.0),
-                    child: ElevatedButton(onPressed: _cadastrar, child: const Text('Cadastrar pessoa')),
-                  ),
-                ],
+    return SizedBox(
+      width: 480,
+      child: loading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32),
+                child: Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: Text('Novo contato', style: KTextStyles.titulo),
+                        ),
+                        GestureDetector(onTap: () => Navigator.of(context).pop(), child: const Icon(Icons.close))
+                      ],
+                    ),
+                    MyTextFormWidget(iconData: Icons.abc, label: 'Nome', controller: _nomeController),
+                    MyTextFormWidget(iconData: Icons.person, label: 'Grupo', controller: _grupoController),
+                    MyTextFormWidget(iconData: Icons.phone, label: 'Contato', controller: _contatoController),
+                    MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
+                    Observer(builder: (_) {
+                      return MunicipioDropDownWidget(
+                        cidades: viewModel.cidades,
+                        onChanged: (cidade) => viewModel.cidadeSelecionada = cidade,
+                      );
+                    }),
+                    Observer(builder: (_) {
+                      return BairroDropDownWidget(
+                        bairros: viewModel.bairros,
+                        onChanged: (bairro) => viewModel.bairroSelecionado = bairro,
+                      );
+                    }),
+                    MyTextFormWidget(iconData: Icons.pin_drop, label: 'Endereço', controller: _enderecoController),
+                    MyTextFormWidget(
+                        iconData: Icons.room_outlined, label: 'Google Maps', controller: _googleMapsController),
+                    Padding(
+                      padding: const EdgeInsets.all(36.0),
+                      child: ElevatedButton(onPressed: _cadastrar, child: const Text('Cadastrar pessoa')),
+                    ),
+                  ],
+                ),
               ),
             ),
-          );
+    );
   }
 
   void _cadastrar() async {
     setState(() {
       loading = true;
     });
-    await viewModel.cadastrar(Pessoa(
+    await viewModel.cadastrar(CadastroPessoaDto(
       nome: _nomeController?.text ?? 'CADASTRO INCOMPLETO',
       grupo: _grupoController?.text,
-      contato: _contatoController?.text,
+      telefone: _contatoController?.text,
       resumo: _resumoController?.text,
-      cidade: viewModel.cidadeSelecionada,
-      bairro: viewModel.bairroSelecionado,
+      cidade: viewModel.cidadeSelecionada?.id,
+      bairro: viewModel.bairroSelecionado?.id,
       endereco: _enderecoController?.text,
       googleMaps: _googleMapsController?.text,
     ));

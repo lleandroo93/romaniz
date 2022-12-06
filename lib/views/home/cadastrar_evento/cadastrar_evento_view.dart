@@ -2,6 +2,7 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:romaniz/constants.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_viewmodel.dart';
 import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
@@ -71,7 +72,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(bottom: 16.0),
-                      child: Text('Novo evento', style: GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.w500)),
+                      child: Text('Novo evento', style: KTextStyles.titulo),
                     ),
                     const Icon(Icons.close)
                   ],
