@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
 import 'package:romaniz/model/evento.dart';
+import 'package:romaniz/model/pessoa.dart';
 import 'package:romaniz/resources/bairro_resources.dart';
 import 'package:romaniz/resources/cidade_resources.dart';
 import 'package:romaniz/resources/evento_resources.dart';
@@ -11,6 +12,7 @@ import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_store.dart'
 class CadastrarEventoViewModel {
   final _store = CadastrarEventoStore();
 
+  Pessoa? contato;
   List<Cidade> get cidades => _store.cidades;
   List<Bairro> get bairros => _store.bairros;
   Cidade? get cidadeSelecionada => _store.cidadeSelecionada;

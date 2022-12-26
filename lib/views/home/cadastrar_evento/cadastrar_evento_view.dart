@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_viewmodel.dart';
+import 'package:romaniz/widgets/contato_form_widget.dart';
 import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
 import 'package:romaniz/widgets/my_text_form_widget.dart';
 
@@ -78,30 +79,9 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   ],
                 ),
                 MyTextFormWidget(iconData: Icons.abc, label: 'Título', controller: _nomeEventoController),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          content: Column(children: [
-                            TextFormField(
-                              autofocus: true,
-                              decoration: const InputDecoration(
-                                  label: Text('Pesquisar'),
-                                  icon: Icon(
-                                    Icons.search,
-                                  )),
-                            ),
-                            const Text('some text'),
-                          ]),
-                        );
-                      },
-                    );
-                  },
-                  child: IgnorePointer(
-                    child: MyTextFormWidget(iconData: Icons.person, label: 'Contato', controller: _contatoController),
-                  ),
+                ContatoFormWidget(
+                  contatoController: _contatoController,
+                  onPessoaSelected: (pessoa) => viewModel.contato = pessoa,
                 ),
                 DataHoraWidget(dataAgendamentoController: _dataAgendamentoController),
                 MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),

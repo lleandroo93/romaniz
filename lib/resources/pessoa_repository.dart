@@ -27,4 +27,9 @@ class PessoaRepository {
     final response = await http.get(Endpoints.pessoa);
     return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((p) => Pessoa.fromJson(p)).toList();
   }
+
+  Future<List<Pessoa>> pesquisarPorNome(String nome, {int? limit}) async {
+    final response = await http.get(Endpoints.pessoaSearch(criteria: nome, limit: limit));
+    return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((p) => Pessoa.fromJson(p)).toList();
+  }
 }
