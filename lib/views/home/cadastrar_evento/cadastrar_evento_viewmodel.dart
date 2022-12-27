@@ -45,7 +45,7 @@ class CadastrarEventoViewModel {
 
     final evento = CadastroEventoDto(
       contato: cadastroEventoContatoDto,
-      data: eventData.date,
+      dataInicio: eventData.date,
       titulo: eventData.title,
       descricao: eventData.description,
       municipio: cidadeSelecionada?.id,

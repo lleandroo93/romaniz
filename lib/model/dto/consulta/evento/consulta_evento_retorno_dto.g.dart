@@ -10,12 +10,14 @@ ConsultaEventoRetornoDto _$ConsultaEventoRetornoDtoFromJson(
         Map<String, dynamic> json) =>
     ConsultaEventoRetornoDto(
       titulo: json['titulo'] as String,
-      data: json['data'] as int,
+      dataInicio: json['dataInicio'] as int,
+      dataFim: json['dataFim'] as int?,
     );
 
 Map<String, dynamic> _$ConsultaEventoRetornoDtoToJson(
         ConsultaEventoRetornoDto instance) =>
     <String, dynamic>{
       'titulo': instance.titulo,
-      'data': instance.data,
+      'dataInicio': instance.dataInicio,
+      'dataFim': instance.dataFim,
     };

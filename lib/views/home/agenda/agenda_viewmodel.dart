@@ -9,9 +9,9 @@ class AgendaViewModel {
         .map((e) => CalendarEventData(
               title: e.titulo,
               event: e,
-              date: DateTime.fromMillisecondsSinceEpoch(e.data),
-              startTime: DateTime.fromMillisecondsSinceEpoch(e.data),
-              endTime: DateTime.fromMillisecondsSinceEpoch(e.data).add(const Duration(hours: 1)),
+              date: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),
+              startTime: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),
+              endTime: DateTime.fromMillisecondsSinceEpoch(e.dataInicio).add(const Duration(hours: 1)),
             ))
         .toList();
 

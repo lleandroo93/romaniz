@@ -5,9 +5,14 @@ part 'consulta_evento_retorno_dto.g.dart';
 @JsonSerializable()
 class ConsultaEventoRetornoDto {
   String titulo;
-  int data;
+  int dataInicio;
+  int? dataFim;
 
-  ConsultaEventoRetornoDto({required this.titulo, required this.data});
+  ConsultaEventoRetornoDto({
+    required this.titulo,
+    required this.dataInicio,
+    this.dataFim,
+  });
 
   factory ConsultaEventoRetornoDto.fromJson(Map<String, dynamic> json) => _$ConsultaEventoRetornoDtoFromJson(json);
 

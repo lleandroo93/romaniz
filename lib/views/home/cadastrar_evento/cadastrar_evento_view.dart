@@ -1,8 +1,9 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:romaniz/constants.dart';
+import 'package:romaniz/views/home/cadastrar_evento/widgets/data_widget.dart';
+import 'package:romaniz/views/home/cadastrar_evento/widgets/hora_widget.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_viewmodel.dart';
 import 'package:romaniz/widgets/contato_form_widget.dart';
@@ -82,7 +83,16 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                 ContatoFormWidget(
                   onPessoaSelected: (pessoa) => viewModel.contato = pessoa,
                 ),
-                DataHoraWidget(dataAgendamentoController: _dataAgendamentoController),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    DataWidget(dataAgendamentoController: _dataAgendamentoController, data: widget.date),
+                    const SizedBox(width: 8),
+                    HoraWidget(label: 'Início', hora: widget.inicio),
+                    const SizedBox(width: 8),
+                    HoraWidget(label: 'Fim', hora: widget.fim),
+                  ],
+                ),
                 MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
                 Observer(builder: (_) {
                   return MunicipioDropDownWidget(
@@ -135,186 +145,3 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
     );
   }
 }
-
-class DataHoraWidget extends StatelessWidget {
-  DateTime? date;
-  TimeOfDay? inicio;
-  TimeOfDay? fim;
-
-  DataHoraWidget({
-    Key? key,
-    required TextEditingController? dataAgendamentoController,
-    this.date,
-    this.inicio,
-    this.fim,
-  })  : _dataAgendamentoController = dataAgendamentoController,
-        super(key: key);
-
-  final TextEditingController? _dataAgendamentoController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        DataWidget(dataAgendamentoController: _dataAgendamentoController, data: date),
-        const SizedBox(width: 8),
-        HoraWidget(label: 'Início', hora: inicio),
-        const SizedBox(width: 8),
-        HoraWidget(label: 'Fim', hora: fim),
-      ],
-    );
-  }
-}
-
-class HoraWidget extends StatelessWidget {
-  final String label;
-  TimeOfDay? hora;
-
-  HoraWidget({
-    Key? key,
-    required this.label,
-    this.hora,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      flex: 1,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(color: Color(0xFF565656)),
-          ),
-          const SizedBox(height: 4),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: 28),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                border: Border.all(color: Color(0xFFD0D0D0)),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: DropdownButton<String>(
-                value: '${hora?.hour ?? '08'}:${hora?.minute ?? '00'}',
-                items: _horas
-                    .map(
-                      (e) => DropdownMenuItem<String>(
-                        alignment: Alignment.center,
-                        value: e,
-                        child: Text(
-                          e,
-                          style: GoogleFonts.inter(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) => {},
-                underline: SizedBox(),
-                isExpanded: true,
-                focusColor: Colors.transparent,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class DataWidget extends StatelessWidget {
-  DateTime? data;
-
-  DataWidget({
-    Key? key,
-    required TextEditingController? dataAgendamentoController,
-    this.data,
-  })  : _dataAgendamentoController = dataAgendamentoController,
-        super(key: key);
-
-  final TextEditingController? _dataAgendamentoController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      flex: 2,
-      child: InkWell(
-        hoverColor: Colors.transparent,
-        splashColor: Colors.transparent,
-        focusColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        onTap: () async {
-          DateTime? selectedDate = await showDatePicker(
-            context: context,
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2022),
-            lastDate: DateTime(2032),
-          );
-          if (selectedDate != null) {
-            _dataAgendamentoController!.text = '${selectedDate.day}/${selectedDate.month}/${selectedDate.year}';
-          }
-        },
-        child: IgnorePointer(
-          child: MyTextFormWidget(
-              iconData: Icons.date_range, label: 'Data do agendamento', controller: _dataAgendamentoController),
-        ),
-      ),
-    );
-  }
-}
-
-const _horas = [
-  '00:00',
-  '00:30',
-  '01:00',
-  '01:30',
-  '02:00',
-  '02:30',
-  '03:00',
-  '03:30',
-  '04:00',
-  '04:30',
-  '05:00',
-  '05:30',
-  '06:00',
-  '06:30',
-  '07:00',
-  '07:30',
-  '08:00',
-  '08:30',
-  '09:00',
-  '09:30',
-  '10:00',
-  '10:30',
-  '11:00',
-  '11:30',
-  '12:00',
-  '12:30',
-  '13:00',
-  '13:30',
-  '14:00',
-  '14:30',
-  '15:00',
-  '15:30',
-  '16:00',
-  '16:30',
-  '17:00',
-  '17:30',
-  '18:00',
-  '18:30',
-  '19:00',
-  '19:30',
-  '20:00',
-  '20:30',
-  '21:00',
-  '21:30',
-  '22:00',
-  '22:30',
-  '23:00',
-  '23:30',
-];

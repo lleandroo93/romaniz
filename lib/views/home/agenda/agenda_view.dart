@@ -50,7 +50,7 @@ class _AgendaViewState extends State<AgendaView> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        content: CadastrarEventoView(),
+        content: CadastrarEventoView(date: DateTime.now()),
         contentPadding: EdgeInsets.zero,
       ),
     );
