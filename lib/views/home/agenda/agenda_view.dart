@@ -91,6 +91,13 @@ class _CalendarRowState extends State<CalendarRow> {
           child: DayView(
             key: dateViewKey,
             width: screenSize.width / 3,
+            onEventTap: (events, date) => showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                title: Text('${events.first.title}'),
+                content: Text('${events.first.description}'),
+              ),
+            ),
           ),
         ),
       ],
