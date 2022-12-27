@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:romaniz/model/pessoa.dart';
+import 'package:romaniz/model/dto/cadastro/evento/cadastro_evento_contato_dto.dart';
 
-part 'evento.g.dart';
+part 'cadastro_evento_dto.g.dart';
 
 @JsonSerializable()
-class Evento {
+class CadastroEventoDto {
   DateTime data;
-  Pessoa? contato;
+  CadastroEventoContatoDto? contato;
   String titulo;
   String? descricao;
   String? municipio;
@@ -14,7 +14,7 @@ class Evento {
   String? endereco;
   String? observacao;
 
-  Evento({
+  CadastroEventoDto({
     required this.data,
     this.contato,
     required this.titulo,
@@ -25,7 +25,7 @@ class Evento {
     required this.observacao,
   });
 
-  factory Evento.fromJson(Map<String, dynamic> json) => _$EventoFromJson(json);
+  factory CadastroEventoDto.fromJson(Map<String, dynamic> json) => _$CadastroEventoDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$EventoToJson(this);
+  Map<String, dynamic> toJson() => _$CadastroEventoDtoToJson(this);
 }

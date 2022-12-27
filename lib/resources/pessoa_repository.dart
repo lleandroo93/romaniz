@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:romaniz/constants.dart';
-import 'package:romaniz/model/dto/cadastro/cadastro_pessoa_dto.dart';
+import 'package:romaniz/model/dto/cadastro/pessoa/cadastro_pessoa_dto.dart';
+import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 
 class PessoaRepository {
@@ -28,8 +29,10 @@ class PessoaRepository {
     return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((p) => Pessoa.fromJson(p)).toList();
   }
 
-  Future<List<Pessoa>> pesquisarPorNome(String nome, {int? limit}) async {
+  Future<List<ConsultaPessoaRetornoDto>> pesquisarPorNome(String nome, {int? limit}) async {
     final response = await http.get(Endpoints.pessoaSearch(criteria: nome, limit: limit));
-    return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((p) => Pessoa.fromJson(p)).toList();
+    return (jsonDecode(utf8.decode(response.bodyBytes)) as List)
+        .map((p) => ConsultaPessoaRetornoDto.fromJson(p))
+        .toList();
   }
 }

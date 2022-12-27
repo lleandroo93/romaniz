@@ -1,16 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'evento.dart';
+part of 'cadastro_evento_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Evento _$EventoFromJson(Map<String, dynamic> json) => Evento(
+CadastroEventoDto _$CadastroEventoDtoFromJson(Map<String, dynamic> json) =>
+    CadastroEventoDto(
       data: DateTime.parse(json['data'] as String),
       contato: json['contato'] == null
           ? null
-          : Pessoa.fromJson(json['contato'] as Map<String, dynamic>),
+          : CadastroEventoContatoDto.fromJson(
+              json['contato'] as Map<String, dynamic>),
       titulo: json['titulo'] as String,
       descricao: json['descricao'] as String?,
       municipio: json['municipio'] as String?,
@@ -19,7 +21,8 @@ Evento _$EventoFromJson(Map<String, dynamic> json) => Evento(
       observacao: json['observacao'] as String?,
     );
 
-Map<String, dynamic> _$EventoToJson(Evento instance) => <String, dynamic>{
+Map<String, dynamic> _$CadastroEventoDtoToJson(CadastroEventoDto instance) =>
+    <String, dynamic>{
       'data': instance.data.toIso8601String(),
       'contato': instance.contato,
       'titulo': instance.titulo,

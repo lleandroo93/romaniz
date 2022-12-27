@@ -80,7 +80,6 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                 ),
                 MyTextFormWidget(iconData: Icons.abc, label: 'Título', controller: _nomeEventoController),
                 ContatoFormWidget(
-                  contatoController: _contatoController,
                   onPessoaSelected: (pessoa) => viewModel.contato = pessoa,
                 ),
                 DataHoraWidget(dataAgendamentoController: _dataAgendamentoController),
@@ -98,7 +97,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                   );
                 }),
                 const MyTextFormWidget(iconData: Icons.pin_drop, label: 'Endereço'),
-                const MyTextFormWidget(iconData: Icons.comment, label: 'Observações'),
+                MyTextFormWidget(iconData: Icons.comment, label: 'Observações', controller: _observacoesController),
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: SizedBox(

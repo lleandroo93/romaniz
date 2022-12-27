@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:romaniz/constants.dart';
-import 'package:romaniz/model/dto/cadastro/cadastro_pessoa_dto.dart';
+import 'package:romaniz/model/dto/cadastro/pessoa/cadastro_pessoa_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_viewmodel.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';

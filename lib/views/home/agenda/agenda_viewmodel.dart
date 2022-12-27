@@ -7,9 +7,9 @@ class AgendaViewModel {
     List<CalendarEventData> listOfCalendarEventData = eventos
         .map((e) => CalendarEventData(
               title: e.titulo,
-              date: e.data,
-              startTime: e.data,
-              endTime: e.data.add(const Duration(hours: 1)),
+              date: DateTime.fromMillisecondsSinceEpoch(e.data),
+              startTime: DateTime.fromMillisecondsSinceEpoch(e.data),
+              endTime: DateTime.fromMillisecondsSinceEpoch(e.data).add(const Duration(hours: 1)),
             ))
         .toList();
 
