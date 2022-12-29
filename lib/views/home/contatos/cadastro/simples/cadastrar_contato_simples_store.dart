@@ -2,11 +2,11 @@ import 'package:mobx/mobx.dart';
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
 
-part 'cadastrar_pessoas_store.g.dart';
+part 'cadastrar_contato_simples_store.g.dart';
 
-class CadastrarPessoasStore = CadastrarPessoasStoreBase with _$CadastrarPessoasStore;
+class CadastrarContatoSimplesStore = CadastrarContatoSimplesStoreBase with _$CadastrarContatoSimplesStore;
 
-abstract class CadastrarPessoasStoreBase with Store {
+abstract class CadastrarContatoSimplesStoreBase with Store {
   // observables
   @observable
   ObservableList<Cidade> _cidades = ObservableList();

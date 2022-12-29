@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cadastrar_pessoas_store.dart';
+part of 'cadastrar_contato_simples_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,10 @@ part of 'cadastrar_pessoas_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$CadastrarPessoasStore on CadastrarPessoasStoreBase, Store {
+mixin _$CadastrarContatoSimplesStore
+    on CadastrarContatoSimplesStoreBase, Store {
   late final _$_cidadesAtom =
-      Atom(name: 'CadastrarPessoasStoreBase._cidades', context: context);
+      Atom(name: 'CadastrarContatoSimplesStoreBase._cidades', context: context);
 
   @override
   ObservableList<Cidade> get _cidades {
@@ -26,7 +27,7 @@ mixin _$CadastrarPessoasStore on CadastrarPessoasStoreBase, Store {
   }
 
   late final _$_bairrosAtom =
-      Atom(name: 'CadastrarPessoasStoreBase._bairros', context: context);
+      Atom(name: 'CadastrarContatoSimplesStoreBase._bairros', context: context);
 
   @override
   ObservableList<Bairro> get _bairros {
@@ -42,7 +43,8 @@ mixin _$CadastrarPessoasStore on CadastrarPessoasStoreBase, Store {
   }
 
   late final _$_cidadeSelecionadaAtom = Atom(
-      name: 'CadastrarPessoasStoreBase._cidadeSelecionada', context: context);
+      name: 'CadastrarContatoSimplesStoreBase._cidadeSelecionada',
+      context: context);
 
   @override
   Cidade? get _cidadeSelecionada {
@@ -58,7 +60,8 @@ mixin _$CadastrarPessoasStore on CadastrarPessoasStoreBase, Store {
   }
 
   late final _$_bairroSelecionadoAtom = Atom(
-      name: 'CadastrarPessoasStoreBase._bairroSelecionado', context: context);
+      name: 'CadastrarContatoSimplesStoreBase._bairroSelecionado',
+      context: context);
 
   @override
   Bairro? get _bairroSelecionado {
@@ -73,39 +76,44 @@ mixin _$CadastrarPessoasStore on CadastrarPessoasStoreBase, Store {
     });
   }
 
-  late final _$CadastrarPessoasStoreBaseActionController =
-      ActionController(name: 'CadastrarPessoasStoreBase', context: context);
+  late final _$CadastrarContatoSimplesStoreBaseActionController =
+      ActionController(
+          name: 'CadastrarContatoSimplesStoreBase', context: context);
 
   @override
   void setCidades(List<Cidade> cidades) {
-    final _$actionInfo = _$CadastrarPessoasStoreBaseActionController
-        .startAction(name: 'CadastrarPessoasStoreBase.setCidades');
+    final _$actionInfo = _$CadastrarContatoSimplesStoreBaseActionController
+        .startAction(name: 'CadastrarContatoSimplesStoreBase.setCidades');
     try {
       return super.setCidades(cidades);
     } finally {
-      _$CadastrarPessoasStoreBaseActionController.endAction(_$actionInfo);
+      _$CadastrarContatoSimplesStoreBaseActionController
+          .endAction(_$actionInfo);
     }
   }
 
   @override
   void setBairros(List<Bairro> bairros) {
-    final _$actionInfo = _$CadastrarPessoasStoreBaseActionController
-        .startAction(name: 'CadastrarPessoasStoreBase.setBairros');
+    final _$actionInfo = _$CadastrarContatoSimplesStoreBaseActionController
+        .startAction(name: 'CadastrarContatoSimplesStoreBase.setBairros');
     try {
       return super.setBairros(bairros);
     } finally {
-      _$CadastrarPessoasStoreBaseActionController.endAction(_$actionInfo);
+      _$CadastrarContatoSimplesStoreBaseActionController
+          .endAction(_$actionInfo);
     }
   }
 
   @override
   void updateCidadeSelecionada(Cidade? cidade) {
-    final _$actionInfo = _$CadastrarPessoasStoreBaseActionController
-        .startAction(name: 'CadastrarPessoasStoreBase.updateCidadeSelecionada');
+    final _$actionInfo =
+        _$CadastrarContatoSimplesStoreBaseActionController.startAction(
+            name: 'CadastrarContatoSimplesStoreBase.updateCidadeSelecionada');
     try {
       return super.updateCidadeSelecionada(cidade);
     } finally {
-      _$CadastrarPessoasStoreBaseActionController.endAction(_$actionInfo);
+      _$CadastrarContatoSimplesStoreBaseActionController
+          .endAction(_$actionInfo);
     }
   }
 

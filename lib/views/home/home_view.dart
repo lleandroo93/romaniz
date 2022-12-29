@@ -3,7 +3,7 @@ import 'package:romaniz/constants.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
 import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_view.dart';
-import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_pessoas_view.dart';
+import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_view.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
 import 'package:romaniz/views/home/sidebar_view.dart';
@@ -58,8 +58,8 @@ Route _onGenerateRoute(RouteSettings settings) {
     case CadastrarEventoView.route:
       page = CadastrarEventoView(dataEvento: DateTime.now());
       break;
-    case CadastrarPessoasView.route:
-      page = const CadastrarPessoasView();
+    case CadastrarContatoSimplesView.route:
+      page = const CadastrarContatoSimplesView();
       break;
     case PesquisarContatosView.route:
       page = const PesquisarContatosView();
