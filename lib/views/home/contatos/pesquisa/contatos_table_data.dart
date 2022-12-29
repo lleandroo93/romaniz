@@ -24,7 +24,6 @@ class ContatosTableData extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
               return const SizedBox();
-
             case ConnectionState.waiting:
               return const Center(child: CircularProgressIndicator());
             case ConnectionState.active:

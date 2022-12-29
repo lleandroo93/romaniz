@@ -91,7 +91,17 @@ class _CadastrarPessoasViewState extends State<CadastrarPessoasView> {
                         iconData: Icons.room_outlined, label: 'Google Maps', controller: _googleMapsController),
                     Padding(
                       padding: const EdgeInsets.all(36.0),
-                      child: ElevatedButton(onPressed: _cadastrar, child: const Text('Cadastrar pessoa')),
+                      child: SizedBox(
+                        width: 160,
+                        child: ElevatedButton(
+                          onPressed: _cadastrar,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF63C554),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                          ),
+                          child: const Text('Salvar'),
+                        ),
+                      ),
                     ),
                   ],
                 ),
