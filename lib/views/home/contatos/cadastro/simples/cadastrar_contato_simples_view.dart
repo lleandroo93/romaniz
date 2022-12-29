@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:romaniz/constants.dart';
-import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
+import 'package:romaniz/model/dto/cadastro/contato/simples/cadastro_contato_simples_dto.dart';
 import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_view.dart';
 import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_viewmodel.dart';
 import 'package:romaniz/widgets/my_text_form_widget.dart';
@@ -17,31 +17,22 @@ class _CadastrarContatoSimplesViewState extends State<CadastrarContatoSimplesVie
   bool loading = false;
   CadastrarContatoSimplesViewModel viewModel = CadastrarContatoSimplesViewModel();
   TextEditingController? _nomeController;
-  TextEditingController? _grupoController;
   TextEditingController? _contatoController;
   TextEditingController? _resumoController;
-  TextEditingController? _enderecoController;
-  TextEditingController? _googleMapsController;
 
   @override
   void initState() {
     super.initState();
     _nomeController = TextEditingController();
     _contatoController = TextEditingController();
-    _grupoController = TextEditingController();
     _resumoController = TextEditingController();
-    _enderecoController = TextEditingController();
-    _googleMapsController = TextEditingController();
   }
 
   @override
   void dispose() {
     _nomeController?.dispose();
     _contatoController?.dispose();
-    _grupoController?.dispose();
     _resumoController?.dispose();
-    _enderecoController?.dispose();
-    _googleMapsController?.dispose();
     super.dispose();
   }
 
@@ -113,15 +104,10 @@ class _CadastrarContatoSimplesViewState extends State<CadastrarContatoSimplesVie
     setState(() {
       loading = true;
     });
-    await viewModel.cadastrar(CadastroContatoCompletoDto(
+    await viewModel.cadastrar(CadastroContatoSimplesDto(
       nome: _nomeController?.text ?? 'CADASTRO INCOMPLETO',
-      grupo: _grupoController?.text,
       telefone: _contatoController?.text,
       resumo: _resumoController?.text,
-      cidade: viewModel.cidadeSelecionada?.id,
-      bairro: viewModel.bairroSelecionado?.id,
-      endereco: _enderecoController?.text,
-      googleMaps: _googleMapsController?.text,
     ));
     setState(() {
       loading = false;

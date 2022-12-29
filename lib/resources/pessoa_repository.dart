@@ -4,14 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
+import 'package:romaniz/model/dto/cadastro/contato/simples/cadastro_contato_simples_dto.dart';
 import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 
-class PessoaRepository {
-  Future<Pessoa?> criar(CadastroContatoCompletoDto dto) async {
+class ContatoRepository {
+  Future<Pessoa?> criarSimples(CadastroContatoSimplesDto dto) async {
     debugPrint(jsonEncode(dto));
     final response = await http.post(
-      Endpoints.pessoa,
+      Endpoints.cadastroContatoSimples,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(dto),
+    );
+    if (response.statusCode == 202) {
+      return Pessoa.fromJson(jsonDecode(response.body));
+    } else {
+      return null;
+    }
+  }
+
+  Future<Pessoa?> criarCompleto(CadastroContatoCompletoDto dto) async {
+    debugPrint(jsonEncode(dto));
+    final response = await http.post(
+      Endpoints.cadastroContatoCompleto,
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

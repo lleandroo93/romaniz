@@ -8,6 +8,8 @@ class Endpoints {
   static const uf_id = '0ff948e2-2f7a-4290-99b5-bf4a45052ed9'; // Roraima
 
   static Uri get pessoa => Uri.parse('$BASE_URL/pessoa');
+  static Uri get cadastroContatoSimples => Uri.parse('$BASE_URL/pessoa/simples');
+  static Uri get cadastroContatoCompleto => Uri.parse('$BASE_URL/pessoa/completo');
   static Uri get listarCidades => Uri.parse('$BASE_URL/uf/$uf_id/cidade');
   static Uri get listarEventos => Uri.parse('$BASE_URL/evento');
   static Uri get criarEventos => Uri.parse('$BASE_URL/evento');

@@ -31,6 +31,6 @@ class CadastrarContatoCompletoViewModel {
   }
 
   Future cadastrar(CadastroContatoCompletoDto pessoa) {
-    return PessoaRepository().criar(pessoa);
+    return ContatoRepository().criarCompleto(pessoa);
   }
 }

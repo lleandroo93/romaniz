@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
-import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_viewmodel.dart';
+import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_viewmodel.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
 import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
 import 'package:romaniz/widgets/my_text_form_widget.dart';
@@ -17,7 +17,7 @@ class CadastrarContatoCompletoView extends StatefulWidget {
 
 class _CadastrarContatoCompletoViewState extends State<CadastrarContatoCompletoView> {
   bool loading = false;
-  CadastrarContatoSimplesViewModel viewModel = CadastrarContatoSimplesViewModel();
+  CadastrarContatoCompletoViewModel viewModel = CadastrarContatoCompletoViewModel();
   TextEditingController? _nomeController;
   TextEditingController? _grupoController;
   TextEditingController? _contatoController;

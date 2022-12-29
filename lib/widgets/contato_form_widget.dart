@@ -61,7 +61,7 @@ class ContatoFormWidget extends StatelessWidget {
   }
 
   Future<List<ConsultaPessoaRetornoDto>> suggestionsCallback(String pattern) {
-    return PessoaRepository().pesquisarPorNome(pattern, limit: 10);
+    return ContatoRepository().pesquisarPorNome(pattern, limit: 10);
   }
 }
 
