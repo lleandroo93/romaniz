@@ -51,7 +51,7 @@ class _CadastrarContatoSimplesViewState extends State<CadastrarContatoSimplesVie
                     child: InkWell(
                       onTap: () {
                         Navigator.of(context).pop();
-                        navigatorKey.currentState!.pushReplacementNamed(CadastrarContatoCompletoView.route);
+                        navigatorKey.currentState!.pushNamed(CadastrarContatoCompletoView.route);
                       },
                       child: const Icon(
                         Icons.open_in_full,

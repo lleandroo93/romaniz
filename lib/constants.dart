@@ -18,6 +18,9 @@ class Endpoints {
 
   static Uri pessoaSearch({required String criteria, int? limit}) =>
       Uri.parse('$BASE_URL/pessoa/search?criteria=$criteria&limit=$limit');
+
+  static Uri grupoSearch({required String criteria, int? limit}) =>
+      Uri.parse('$BASE_URL/grupo/search?criteria=$criteria&limit=$limit');
 }
 
 abstract class KColors {

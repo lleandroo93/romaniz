@@ -1,20 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
-import 'package:romaniz/resources/pessoa_repository.dart';
+import 'package:romaniz/model/dto/consulta/grupo/consulta_grupo_retorno_dto.dart';
+import 'package:romaniz/resources/grupo_repository.dart';
 
-class ContatoFormWidget extends StatelessWidget {
-  final void Function(ConsultaPessoaRetornoDto) onPessoaSelected;
-  TextEditingController contatoController;
+class GrupoFormWidget extends StatelessWidget {
+  final void Function(ConsultaGrupoRetornoDto grupo) onGrupoSelected;
+  TextEditingController grupoController;
 
-  ContatoFormWidget({
-    Key? key,
-    required this.onPessoaSelected,
+  GrupoFormWidget({
+    super.key,
+    required this.onGrupoSelected,
     TextEditingController? controller,
-  })  : contatoController = controller ?? TextEditingController(),
-        super(key: key);
+  }) : grupoController = controller ?? TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +19,20 @@ class ContatoFormWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Contato:',
+          'Grupo:',
           style: TextStyle(color: Color(0xFF565656)),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 4, bottom: 12),
-          child: TypeAheadField<ConsultaPessoaRetornoDto>(
+          child: TypeAheadField<ConsultaGrupoRetornoDto>(
             suggestionsCallback: suggestionsCallback,
-            itemBuilder: (context, pessoa) => ListTile(
-              title: Text(pessoa.nome),
-              subtitle: Text(pessoa.grupo ?? ''),
-            ),
+            itemBuilder: (context, grupo) => ListTile(title: Text(grupo.nome)),
             onSuggestionSelected: (suggestion) {
-              onPessoaSelected(suggestion);
-              contatoController.text = suggestion.nome;
+              onGrupoSelected(suggestion);
+              grupoController.text = suggestion.nome;
             },
             textFieldConfiguration: TextFieldConfiguration(
-              controller: contatoController,
+              controller: grupoController,
               decoration: const InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFFD0D0D0)),
@@ -60,7 +54,7 @@ class ContatoFormWidget extends StatelessWidget {
     );
   }
 
-  Future<List<ConsultaPessoaRetornoDto>> suggestionsCallback(String pattern) {
-    return ContatoRepository().pesquisarPorNome(pattern, limit: 10);
+  Future<List<ConsultaGrupoRetornoDto>> suggestionsCallback(String pattern) {
+    return GrupoRepository().pesquisarPorNome(pattern, limit: 10);
   }
 }

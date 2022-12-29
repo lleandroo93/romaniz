@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
+import 'package:romaniz/model/dto/cadastro/grupo/cadastro_grupo_dto.dart';
 import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_viewmodel.dart';
 import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
+import 'package:romaniz/widgets/grupo_form_widget.dart';
 import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
 import 'package:romaniz/widgets/my_text_form_widget.dart';
 
@@ -73,7 +75,10 @@ class _CadastrarContatoCompletoViewState extends State<CadastrarContatoCompletoV
                           ],
                         ),
                         MyTextFormWidget(iconData: Icons.abc, label: 'Nome', controller: _nomeController),
-                        MyTextFormWidget(iconData: Icons.person, label: 'Grupo', controller: _grupoController),
+                        GrupoFormWidget(
+                          controller: _grupoController,
+                          onGrupoSelected: (grupo) => viewModel.grupo = grupo,
+                        ),
                         MyTextFormWidget(iconData: Icons.phone, label: 'Contato', controller: _contatoController),
                         MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
                         Observer(builder: (_) {
@@ -120,7 +125,7 @@ class _CadastrarContatoCompletoViewState extends State<CadastrarContatoCompletoV
     });
     await viewModel.cadastrar(CadastroContatoCompletoDto(
       nome: _nomeController?.text ?? 'CADASTRO INCOMPLETO',
-      grupo: _grupoController?.text,
+      grupo: _getGrupo(),
       telefone: _contatoController?.text,
       resumo: _resumoController?.text,
       cidade: viewModel.cidadeSelecionada?.id,
@@ -132,5 +137,38 @@ class _CadastrarContatoCompletoViewState extends State<CadastrarContatoCompletoV
       loading = false;
       Navigator.pop(context);
     });
+  }
+
+  CadastroGrupoDto? _getGrupo() {
+    final grupoSelecionado = viewModel.grupo;
+    final nomeDigitado = _grupoController?.text;
+
+    if (grupoSelecionado == null) {
+      if (nomeDigitado != null) {
+        // Sem grupo selecionado mas texto digitado = novo grupo
+        return CadastroGrupoDto(nome: nomeDigitado);
+      } else {
+        // Sem grupo selecionado sem texto digitado
+        return null;
+      }
+    } else {
+      if (nomeDigitado == null) {
+        // Grupo selecionado mas sem texto digitado, apagou, vai nulo
+        return null;
+      } else {
+        if (grupoSelecionado.nome == nomeDigitado) {
+          // Grupo selecionado e digitado conferem, são o mesmo
+          return CadastroGrupoDto(
+            id: grupoSelecionado.id,
+            nome: grupoSelecionado.nome,
+          );
+        } else {
+          // Grupo selecionado e digitado não conferem, criar um novo
+          return CadastroGrupoDto(
+            nome: grupoSelecionado.nome,
+          );
+        }
+      }
+    }
   }
 }

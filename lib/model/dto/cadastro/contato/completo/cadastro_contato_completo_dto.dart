@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:romaniz/model/dto/cadastro/grupo/cadastro_grupo_dto.dart';
 
 part 'cadastro_contato_completo_dto.g.dart';
 
@@ -7,7 +8,7 @@ class CadastroContatoCompletoDto {
   String nome;
   String? endereco;
   String? telefone;
-  String? grupo;
+  CadastroGrupoDto? grupo;
   String? resumo;
   String? uf;
   String? cidade;

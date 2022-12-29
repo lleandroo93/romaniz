@@ -226,7 +226,8 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height - 100, right: 20, left: 20),
+        // margin: EdgeInsets.only(bottom: MediaQuery.of(context).size.height - 100, right: 20, left: 20),
+        width: 200,
       ),
     );
   }

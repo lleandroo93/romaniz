@@ -12,7 +12,9 @@ CadastroContatoCompletoDto _$CadastroContatoCompletoDtoFromJson(
       nome: json['nome'] as String,
       endereco: json['endereco'] as String?,
       telefone: json['telefone'] as String?,
-      grupo: json['grupo'] as String?,
+      grupo: json['grupo'] == null
+          ? null
+          : CadastroGrupoDto.fromJson(json['grupo'] as Map<String, dynamic>),
       resumo: json['resumo'] as String?,
       uf: json['uf'] as String?,
       cidade: json['cidade'] as String?,
