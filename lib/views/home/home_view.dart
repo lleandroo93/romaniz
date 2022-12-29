@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:romaniz/constants.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
+import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_view.dart';
+import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_pessoas_view.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
-import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 import 'package:romaniz/views/home/sidebar_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -18,7 +20,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final _navigatorKey = GlobalKey<NavigatorState>();
+  // final _navigatorKey = GlobalKey<NavigatorState>();
+  final _navigatorKey = navigatorKey;
 
   void _onSelectedRoute(String route) {
     _navigatorKey.currentState!.pushReplacementNamed(route);
@@ -60,6 +63,10 @@ Route _onGenerateRoute(RouteSettings settings) {
       break;
     case PesquisarContatosView.route:
       page = const PesquisarContatosView();
+      break;
+    case CadastrarContatoCompletoView.route:
+      page = const CadastrarContatoCompletoView();
+      break;
   }
 
   return MaterialPageRoute<dynamic>(

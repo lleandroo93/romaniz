@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:romaniz/constants.dart';
+import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_pessoas_view.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/contatos_table_data.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_viewmodel.dart';
-import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 
 class PesquisarContatosView extends StatelessWidget {
   static const String route = 'contatos';

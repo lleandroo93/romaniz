@@ -4,9 +4,9 @@ import 'package:romaniz/model/dto/cadastro/pessoa/cadastro_pessoa_dto.dart';
 import 'package:romaniz/resources/bairro_resources.dart';
 import 'package:romaniz/resources/cidade_resources.dart';
 import 'package:romaniz/resources/pessoa_repository.dart';
-import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_store.dart';
+import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_pessoas_store.dart';
 
-class CadastrarPessoasViewModel {
+class CadastrarContatoCompletoViewModel {
   final _store = CadastrarPessoasStore();
 
   List<Cidade> get cidades => _store.cidades;
@@ -21,7 +21,7 @@ class CadastrarPessoasViewModel {
     }
   }
 
-  CadastrarPessoasViewModel() {
+  CadastrarContatoCompletoViewModel() {
     _buscarCidades();
   }
 

@@ -26,3 +26,5 @@ abstract class KColors {
 abstract class KTextStyles {
   static TextStyle titulo = GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.w500);
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();

@@ -3,7 +3,6 @@ import 'package:romaniz/constants.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
-import 'package:romaniz/views/home/pessoas/cadastrar_pessoas_view.dart';
 
 class SideBar extends StatelessWidget {
   const SideBar({

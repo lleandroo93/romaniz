@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
+
 part 'cadastrar_pessoas_store.g.dart';
 
 class CadastrarPessoasStore = CadastrarPessoasStoreBase with _$CadastrarPessoasStore;
