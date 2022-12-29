@@ -82,6 +82,23 @@ class _CalendarRowState extends State<CalendarRow> {
         MonthView(
           key: UniqueKey(),
           controller: CalendarControllerProvider.of<ConsultaEventoRetornoDto>(context).controller,
+          weekDayBuilder: (day) {
+            if (day == 0) {
+              return const Text('Seg', textAlign: TextAlign.center);
+            } else if (day == 1) {
+              return const Text('Ter', textAlign: TextAlign.center);
+            } else if (day == 2) {
+              return const Text('Qua', textAlign: TextAlign.center);
+            } else if (day == 3) {
+              return const Text('Qui', textAlign: TextAlign.center);
+            } else if (day == 4) {
+              return const Text('Sex', textAlign: TextAlign.center);
+            } else if (day == 5) {
+              return const Text('Sab', textAlign: TextAlign.center, style: TextStyle(color: Colors.amber));
+            } else {
+              return const Text('Dom', textAlign: TextAlign.center, style: TextStyle(color: Colors.redAccent));
+            }
+          },
           width: screenSize.width / 2,
           cellAspectRatio: 1,
           onCellTap: (events, date) {
@@ -97,6 +114,7 @@ class _CalendarRowState extends State<CalendarRow> {
           child: DayView<ConsultaEventoRetornoDto>(
             key: dateViewKey,
             width: screenSize.width / 3,
+            dateStringBuilder: (date, {secondaryDate}) => '${date.day}/${date.month}/${date.year}',
             onEventTap: (events, date) async {
               final sucesso = await _showEvent(context, events.first);
 
