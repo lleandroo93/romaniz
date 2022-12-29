@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_viewmodel.dart';
 
@@ -34,7 +35,7 @@ class ContatosTableData extends StatelessWidget {
         });
   }
 
-  _toRows(List<Pessoa>? data) {
+  _toRows(List<ConsultaPessoaRetornoDto>? data) {
     if (data == null || data.isEmpty) {
       return emptyRows;
     } else {
@@ -42,7 +43,7 @@ class ContatosTableData extends StatelessWidget {
           .map((p) => DataRow(
                 cells: <DataCell>[
                   DataCell(Text(p.nome)),
-                  DataCell(Text(p.contato ?? '')),
+                  DataCell(Text(p.telefone ?? '')),
                   DataCell(Text(p.grupo ?? '')),
                   DataCell(Text(p.endereco ?? '')),
                   DataCell(GestureDetector(onTap: () {}, child: const Icon(Icons.more_horiz)))

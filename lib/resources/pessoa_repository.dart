@@ -41,9 +41,11 @@ class ContatoRepository {
     }
   }
 
-  Future<List<Pessoa>> listar() async {
+  Future<List<ConsultaPessoaRetornoDto>> listar() async {
     final response = await http.get(Endpoints.pessoa);
-    return (jsonDecode(utf8.decode(response.bodyBytes)) as List).map((p) => Pessoa.fromJson(p)).toList();
+    return (jsonDecode(utf8.decode(response.bodyBytes)) as List)
+        .map((p) => ConsultaPessoaRetornoDto.fromJson(p))
+        .toList();
   }
 
   Future<List<ConsultaPessoaRetornoDto>> pesquisarPorNome(String nome, {int? limit}) async {

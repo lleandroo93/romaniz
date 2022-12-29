@@ -8,12 +8,14 @@ class ConsultaPessoaRetornoDto {
   String nome;
   String? telefone;
   String? grupo;
+  String? endereco;
 
   ConsultaPessoaRetornoDto({
     required this.id,
     required this.nome,
     this.telefone,
     this.grupo,
+    this.endereco,
   });
 
   factory ConsultaPessoaRetornoDto.fromJson(Map<String, dynamic> json) => _$ConsultaPessoaRetornoDtoFromJson(json);

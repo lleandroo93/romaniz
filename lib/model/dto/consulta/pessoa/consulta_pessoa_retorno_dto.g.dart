@@ -13,6 +13,7 @@ ConsultaPessoaRetornoDto _$ConsultaPessoaRetornoDtoFromJson(
       nome: json['nome'] as String,
       telefone: json['telefone'] as String?,
       grupo: json['grupo'] as String?,
+      endereco: json['endereco'] as String?,
     );
 
 Map<String, dynamic> _$ConsultaPessoaRetornoDtoToJson(
@@ -22,4 +23,5 @@ Map<String, dynamic> _$ConsultaPessoaRetornoDtoToJson(
       'nome': instance.nome,
       'telefone': instance.telefone,
       'grupo': instance.grupo,
+      'endereco': instance.endereco,
     };
