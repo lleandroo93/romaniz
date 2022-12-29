@@ -8,6 +8,7 @@ class AgendaViewModel {
     List<CalendarEventData<ConsultaEventoRetornoDto>> listOfCalendarEventData = eventos
         .map((e) => CalendarEventData(
               title: e.titulo,
+              description: e.resumo ?? '',
               event: e,
               date: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),
               startTime: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),

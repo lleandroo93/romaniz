@@ -9,7 +9,7 @@ class ConsultaEventoRetornoDto {
   String? contato;
   int dataInicio;
   int? dataFim;
-  String? descricao;
+  String? resumo;
   String? endereco;
   String? observacao;
 
@@ -19,7 +19,7 @@ class ConsultaEventoRetornoDto {
     this.contato,
     required this.dataInicio,
     this.dataFim,
-    this.descricao,
+    this.resumo,
     this.endereco,
     this.observacao,
   });

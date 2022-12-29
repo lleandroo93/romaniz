@@ -14,7 +14,7 @@ ConsultaEventoRetornoDto _$ConsultaEventoRetornoDtoFromJson(
       contato: json['contato'] as String?,
       dataInicio: json['dataInicio'] as int,
       dataFim: json['dataFim'] as int?,
-      descricao: json['descricao'] as String?,
+      resumo: json['resumo'] as String?,
       endereco: json['endereco'] as String?,
       observacao: json['observacao'] as String?,
     );
@@ -27,7 +27,7 @@ Map<String, dynamic> _$ConsultaEventoRetornoDtoToJson(
       'contato': instance.contato,
       'dataInicio': instance.dataInicio,
       'dataFim': instance.dataFim,
-      'descricao': instance.descricao,
+      'resumo': instance.resumo,
       'endereco': instance.endereco,
       'observacao': instance.observacao,
     };

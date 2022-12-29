@@ -51,7 +51,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
     _nomeEventoController = TextEditingController(text: widget.eventoAlterar?.titulo);
     _contatoController = TextEditingController(text: widget.eventoAlterar?.contato);
     _dataAgendamentoController = TextEditingController(text: widget.eventoAlterar?.dataInicioFormatada);
-    _resumoController = TextEditingController(text: widget.eventoAlterar?.descricao);
+    _resumoController = TextEditingController(text: widget.eventoAlterar?.resumo);
     _enderecoController = TextEditingController(text: widget.eventoAlterar?.endereco);
     _observacoesController = TextEditingController(text: widget.eventoAlterar?.observacao);
   }
@@ -113,7 +113,7 @@ class _CadastrarEventoViewState extends State<CadastrarEventoView> {
                     const SizedBox(width: 8),
                     HoraWidget(
                       label: 'Início',
-                      hora: widget.inicio,
+                      hora: widget.inicio ?? const TimeOfDay(hour: 0, minute: 0),
                       onChanged: (value) {
                         setState(() {
                           widget.inicio = value;

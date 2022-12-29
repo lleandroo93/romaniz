@@ -48,13 +48,15 @@ class BotaoNovoContato extends StatelessWidget {
     return Align(
       alignment: Alignment.centerRight,
       child: TextButton(
-          onPressed: () => showDialog(
-                context: context,
-                builder: (context) => const AlertDialog(
-                  content: CadastrarContatoSimplesView(),
-                  contentPadding: EdgeInsets.zero,
-                ),
+          onPressed: () async {
+            await showDialog(
+              context: context,
+              builder: (context) => const AlertDialog(
+                content: CadastrarContatoSimplesView(),
+                contentPadding: EdgeInsets.zero,
               ),
+            );
+          },
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: const [

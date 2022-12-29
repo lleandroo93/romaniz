@@ -90,6 +90,7 @@ class _CalendarRowState extends State<CalendarRow> {
               dateViewKey.currentState?.jumpToDate(date);
             });
           },
+          onEventTap: (event, date) => _showEvent(context, event),
         ),
         Flexible(
           flex: 1,
@@ -97,16 +98,7 @@ class _CalendarRowState extends State<CalendarRow> {
             key: dateViewKey,
             width: screenSize.width / 3,
             onEventTap: (events, date) async {
-              final sucesso = await showDialog<bool>(
-                context: context,
-                builder: (context) => AlertDialog(
-                  title: Text('${events.first.title}'),
-                  content: CadastrarEventoView(
-                    dataEvento: events.first.date,
-                    eventoAlterar: events.first.event,
-                  ),
-                ),
-              );
+              final sucesso = await _showEvent(context, events.first);
 
               if (sucesso ?? false) {
                 setState(() {});
@@ -115,6 +107,19 @@ class _CalendarRowState extends State<CalendarRow> {
           ),
         ),
       ],
+    );
+  }
+
+  Future<bool?> _showEvent(BuildContext context, CalendarEventData<ConsultaEventoRetornoDto> event) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(event.title),
+        content: CadastrarEventoView(
+          dataEvento: event.date,
+          eventoAlterar: event.event,
+        ),
+      ),
     );
   }
 }

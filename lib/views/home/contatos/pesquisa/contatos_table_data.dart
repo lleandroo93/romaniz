@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
-import 'package:romaniz/model/pessoa.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_viewmodel.dart';
 
 class ContatosTableData extends StatelessWidget {
@@ -11,7 +10,7 @@ class ContatosTableData extends StatelessWidget {
     DataColumn(label: Text('Nome')),
     DataColumn(label: Text('Telefone')),
     DataColumn(label: Text('Grupo')),
-    DataColumn(label: Text('Bairro')),
+    DataColumn(label: Text('Endereço')),
     DataColumn(label: Text('')),
   ];
 
