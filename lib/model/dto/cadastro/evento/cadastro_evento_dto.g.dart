@@ -8,6 +8,7 @@ part of 'cadastro_evento_dto.dart';
 
 CadastroEventoDto _$CadastroEventoDtoFromJson(Map<String, dynamic> json) =>
     CadastroEventoDto(
+      id: json['id'] as String?,
       dataInicio: DateTime.parse(json['dataInicio'] as String),
       dataFim: json['dataFim'] == null
           ? null
@@ -26,6 +27,7 @@ CadastroEventoDto _$CadastroEventoDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$CadastroEventoDtoToJson(CadastroEventoDto instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'dataInicio': instance.dataInicio.toIso8601String(),
       'dataFim': instance.dataFim?.toIso8601String(),
       'contato': instance.contato,

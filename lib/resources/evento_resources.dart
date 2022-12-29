@@ -11,16 +11,42 @@ class EventoResources {
   Future<List<ConsultaEventoRetornoDto>> listar() async {
     final response = await http.get(Endpoints.listarEventos);
     if (response.statusCode == 200) {
-      return (jsonDecode(response.body) as List).map((e) => ConsultaEventoRetornoDto.fromJson(e)).toList();
+      return (jsonDecode(utf8.decode(response.bodyBytes)) as List)
+          .map((e) => ConsultaEventoRetornoDto.fromJson(e))
+          .toList();
     } else {
       return [];
     }
   }
 
-  Future<Evento?> criar(CadastroEventoDto evento) async {
+  Future<Evento?> salvar(CadastroEventoDto evento) async {
+    if (evento.id == null) {
+      return _criar(evento);
+    } else {
+      return _alterar(evento.id!, evento);
+    }
+  }
+
+  Future<Evento?> _criar(CadastroEventoDto evento) async {
     debugPrint(jsonEncode(evento));
     final response = await http.post(
       Endpoints.criarEventos,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(evento),
+    );
+    if (response.statusCode == 202) {
+      return Evento.fromJson(jsonDecode(response.body));
+    } else {
+      return null;
+    }
+  }
+
+  Future<Evento?> _alterar(String id, CadastroEventoDto evento) async {
+    debugPrint(jsonEncode(evento));
+    final response = await http.put(
+      Endpoints.alterarEvento(id),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

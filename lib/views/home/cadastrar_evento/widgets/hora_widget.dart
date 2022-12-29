@@ -4,12 +4,14 @@ import 'package:romaniz/views/home/cadastrar_evento/widgets/horas.dart';
 
 class HoraWidget extends StatelessWidget {
   final String label;
+  final void Function(TimeOfDay? value)? onChanged;
   TimeOfDay? hora;
 
   HoraWidget({
     Key? key,
     required this.label,
     this.hora,
+    required this.onChanged,
   }) : super(key: key);
 
   @override
@@ -31,15 +33,15 @@ class HoraWidget extends StatelessWidget {
                 border: Border.all(color: Color(0xFFD0D0D0)),
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: DropdownButton<String>(
-                value: '${hora?.hour ?? '08'}:${hora?.minute ?? '00'}',
+              child: DropdownButton<TimeOfDay>(
+                value: hora,
                 items: horas
                     .map(
-                      (e) => DropdownMenuItem<String>(
+                      (e) => DropdownMenuItem<TimeOfDay>(
                         alignment: Alignment.center,
                         value: e,
                         child: Text(
-                          e,
+                          e.format(context),
                           style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
@@ -49,7 +51,7 @@ class HoraWidget extends StatelessWidget {
                       ),
                     )
                     .toList(),
-                onChanged: (value) => {},
+                onChanged: onChanged,
                 underline: SizedBox(),
                 isExpanded: true,
                 focusColor: Colors.transparent,

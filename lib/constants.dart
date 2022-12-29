@@ -11,6 +11,7 @@ class Endpoints {
   static Uri get listarCidades => Uri.parse('$BASE_URL/uf/$uf_id/cidade');
   static Uri get listarEventos => Uri.parse('$BASE_URL/evento');
   static Uri get criarEventos => Uri.parse('$BASE_URL/evento');
+  static Uri alterarEvento(String id) => Uri.parse('$BASE_URL/evento/$id');
   static Uri listarBairrosPorCidade(Cidade cidade) => Uri.parse('$BASE_URL/cidade/${cidade.id}/bairro');
 
   static Uri pessoaSearch({required String criteria, int? limit}) =>

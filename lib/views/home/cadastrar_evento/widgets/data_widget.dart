@@ -11,11 +11,13 @@ String _formatDateString(final DateTime? date) {
 
 class DataWidget extends StatelessWidget {
   final TextEditingController? dataAgendamentoController;
+  final void Function(DateTime value) onChanged;
   DateTime? data;
 
   DataWidget({
     Key? key,
     required this.dataAgendamentoController,
+    required this.onChanged,
     this.data,
   }) : super(key: key) {
     dataAgendamentoController?.text = _formatDateString(data);
@@ -39,6 +41,7 @@ class DataWidget extends StatelessWidget {
           );
           if (selectedDate != null) {
             dataAgendamentoController?.text = _formatDateString(selectedDate);
+            onChanged(selectedDate);
           }
         },
         child: IgnorePointer(

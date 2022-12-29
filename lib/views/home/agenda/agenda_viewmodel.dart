@@ -11,7 +11,7 @@ class AgendaViewModel {
               event: e,
               date: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),
               startTime: DateTime.fromMillisecondsSinceEpoch(e.dataInicio),
-              endTime: DateTime.fromMillisecondsSinceEpoch(e.dataInicio).add(const Duration(hours: 1)),
+              endTime: DateTime.fromMillisecondsSinceEpoch(e.dataFim ?? e.dataInicio).add(const Duration(hours: 1)),
             ))
         .toList();
 

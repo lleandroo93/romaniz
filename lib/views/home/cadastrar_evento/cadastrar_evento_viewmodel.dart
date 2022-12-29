@@ -4,6 +4,7 @@ import 'package:romaniz/model/bairro.dart';
 import 'package:romaniz/model/cidade.dart';
 import 'package:romaniz/model/dto/cadastro/evento/cadastro_evento_contato_dto.dart';
 import 'package:romaniz/model/dto/cadastro/evento/cadastro_evento_dto.dart';
+import 'package:romaniz/model/dto/consulta/evento/consulta_evento_retorno_dto.dart';
 import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
 import 'package:romaniz/resources/bairro_resources.dart';
 import 'package:romaniz/resources/cidade_resources.dart';
@@ -36,7 +37,7 @@ class CadastrarEventoViewModel {
     _store.setCidades(cidades);
   }
 
-  void cadastrar(CalendarEventData eventData, {String? endereco, String? observacoes}) {
+  void cadastrar(CalendarEventData<ConsultaEventoRetornoDto> eventData, {String? endereco, String? observacoes}) {
     final contato = this.contato;
     CadastroEventoContatoDto? cadastroEventoContatoDto;
     if (contato != null) {
@@ -44,8 +45,10 @@ class CadastrarEventoViewModel {
     }
 
     final evento = CadastroEventoDto(
+      id: eventData.event?.id,
       contato: cadastroEventoContatoDto,
-      dataInicio: eventData.date,
+      dataInicio: eventData.date.toUtc(),
+      dataFim: eventData.endDate.toUtc(),
       titulo: eventData.title,
       descricao: eventData.description,
       municipio: cidadeSelecionada?.id,
@@ -53,6 +56,6 @@ class CadastrarEventoViewModel {
       endereco: endereco ?? '',
       observacao: observacoes ?? '',
     );
-    EventoResources().criar(evento);
+    EventoResources().salvar(evento);
   }
 }

@@ -5,6 +5,7 @@ part 'cadastro_evento_dto.g.dart';
 
 @JsonSerializable()
 class CadastroEventoDto {
+  String? id;
   DateTime dataInicio;
   DateTime? dataFim;
   CadastroEventoContatoDto? contato;
@@ -16,6 +17,7 @@ class CadastroEventoDto {
   String? observacao;
 
   CadastroEventoDto({
+    this.id,
     required this.dataInicio,
     this.dataFim,
     this.contato,

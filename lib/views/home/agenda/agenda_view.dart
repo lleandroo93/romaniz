@@ -1,5 +1,6 @@
 import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:romaniz/model/dto/consulta/evento/consulta_evento_retorno_dto.dart';
 import 'package:romaniz/views/home/agenda/agenda_viewmodel.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
 
@@ -12,12 +13,12 @@ class AgendaView extends StatefulWidget {
 }
 
 class _AgendaViewState extends State<AgendaView> {
-  EventController eventController = EventController();
+  EventController<ConsultaEventoRetornoDto> eventController = EventController();
   AgendaViewModel viewModel = AgendaViewModel();
 
   @override
   Widget build(BuildContext context) {
-    return CalendarControllerProvider(
+    return CalendarControllerProvider<ConsultaEventoRetornoDto>(
       controller: eventController,
       child: MaterialApp(
         home: Scaffold(
@@ -33,7 +34,7 @@ class _AgendaViewState extends State<AgendaView> {
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.done) {
                   if (snapshot.hasData) {
-                    final listOfEvents = snapshot.data as List<CalendarEventData>;
+                    final listOfEvents = snapshot.data as List<CalendarEventData<ConsultaEventoRetornoDto>>;
                     eventController.addAll(listOfEvents);
                   }
                   return const CalendarRow();
@@ -46,14 +47,18 @@ class _AgendaViewState extends State<AgendaView> {
     );
   }
 
-  void _showCadastroDialog() {
-    showDialog(
+  void _showCadastroDialog() async {
+    final sucesso = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        content: CadastrarEventoView(date: DateTime.now()),
+        content: CadastrarEventoView(),
         contentPadding: EdgeInsets.zero,
       ),
     );
+
+    if (sucesso ?? false) {
+      setState(() {});
+    }
   }
 }
 
@@ -76,7 +81,7 @@ class _CalendarRowState extends State<CalendarRow> {
       children: [
         MonthView(
           key: UniqueKey(),
-          controller: CalendarControllerProvider.of(context).controller,
+          controller: CalendarControllerProvider.of<ConsultaEventoRetornoDto>(context).controller,
           width: screenSize.width / 2,
           cellAspectRatio: 1,
           onCellTap: (events, date) {
@@ -88,16 +93,25 @@ class _CalendarRowState extends State<CalendarRow> {
         ),
         Flexible(
           flex: 1,
-          child: DayView(
+          child: DayView<ConsultaEventoRetornoDto>(
             key: dateViewKey,
             width: screenSize.width / 3,
-            onEventTap: (events, date) => showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('${events.first.title}'),
-                content: Text('${events.first.description}'),
-              ),
-            ),
+            onEventTap: (events, date) async {
+              final sucesso = await showDialog<bool>(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('${events.first.title}'),
+                  content: CadastrarEventoView(
+                    dataEvento: events.first.date,
+                    eventoAlterar: events.first.event,
+                  ),
+                ),
+              );
+
+              if (sucesso ?? false) {
+                setState(() {});
+              }
+            },
           ),
         ),
       ],
