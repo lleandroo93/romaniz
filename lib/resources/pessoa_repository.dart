@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:romaniz/constants.dart';
-import 'package:romaniz/model/dto/cadastro/pessoa/cadastro_pessoa_dto.dart';
+import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
 import 'package:romaniz/model/dto/consulta/pessoa/consulta_pessoa_retorno_dto.dart';
 import 'package:romaniz/model/pessoa.dart';
 
 class PessoaRepository {
-  Future<Pessoa?> criar(CadastroPessoaDto dto) async {
+  Future<Pessoa?> criar(CadastroContatoCompletoDto dto) async {
     debugPrint(jsonEncode(dto));
     final response = await http.post(
       Endpoints.pessoa,

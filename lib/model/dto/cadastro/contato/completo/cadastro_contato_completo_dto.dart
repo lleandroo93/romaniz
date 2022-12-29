@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'cadastro_pessoa_dto.g.dart';
+part 'cadastro_contato_completo_dto.g.dart';
 
 @JsonSerializable()
-class CadastroPessoaDto {
+class CadastroContatoCompletoDto {
   String nome;
   String? endereco;
   String? telefone;
@@ -14,7 +14,7 @@ class CadastroPessoaDto {
   String? bairro;
   String? googleMaps;
 
-  CadastroPessoaDto({
+  CadastroContatoCompletoDto({
     required this.nome,
     this.endereco,
     this.telefone,
@@ -26,5 +26,5 @@ class CadastroPessoaDto {
     this.googleMaps,
   });
 
-  Map<String, dynamic> toJson() => _$CadastroPessoaDtoToJson(this);
+  Map<String, dynamic> toJson() => _$CadastroContatoCompletoDtoToJson(this);
 }

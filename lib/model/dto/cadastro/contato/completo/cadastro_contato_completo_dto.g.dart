@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cadastro_pessoa_dto.dart';
+part of 'cadastro_contato_completo_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CadastroPessoaDto _$CadastroPessoaDtoFromJson(Map<String, dynamic> json) =>
-    CadastroPessoaDto(
+CadastroContatoCompletoDto _$CadastroContatoCompletoDtoFromJson(
+        Map<String, dynamic> json) =>
+    CadastroContatoCompletoDto(
       nome: json['nome'] as String,
       endereco: json['endereco'] as String?,
       telefone: json['telefone'] as String?,
@@ -19,7 +20,8 @@ CadastroPessoaDto _$CadastroPessoaDtoFromJson(Map<String, dynamic> json) =>
       googleMaps: json['googleMaps'] as String?,
     );
 
-Map<String, dynamic> _$CadastroPessoaDtoToJson(CadastroPessoaDto instance) =>
+Map<String, dynamic> _$CadastroContatoCompletoDtoToJson(
+        CadastroContatoCompletoDto instance) =>
     <String, dynamic>{
       'nome': instance.nome,
       'endereco': instance.endereco,

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:go_router/go_router.dart';
 import 'package:romaniz/constants.dart';
-import 'package:romaniz/model/dto/cadastro/pessoa/cadastro_pessoa_dto.dart';
+import 'package:romaniz/model/dto/cadastro/contato/completo/cadastro_contato_completo_dto.dart';
 import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_completo_view.dart';
 import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_viewmodel.dart';
-import 'package:romaniz/widgets/bairro_dropdown_widget%20.dart';
-import 'package:romaniz/widgets/municipio_dropdown_widget.dart';
 import 'package:romaniz/widgets/my_text_form_widget.dart';
 
 class CadastrarContatoSimplesView extends StatefulWidget {
@@ -88,24 +84,8 @@ class _CadastrarContatoSimplesViewState extends State<CadastrarContatoSimplesVie
                           ],
                         ),
                         MyTextFormWidget(iconData: Icons.abc, label: 'Nome', controller: _nomeController),
-                        MyTextFormWidget(iconData: Icons.person, label: 'Grupo', controller: _grupoController),
                         MyTextFormWidget(iconData: Icons.phone, label: 'Contato', controller: _contatoController),
                         MyTextFormWidget(iconData: Icons.notes, label: 'Resumo', controller: _resumoController),
-                        Observer(builder: (_) {
-                          return MunicipioDropDownWidget(
-                            cidades: viewModel.cidades,
-                            onChanged: (cidade) => viewModel.cidadeSelecionada = cidade,
-                          );
-                        }),
-                        Observer(builder: (_) {
-                          return BairroDropDownWidget(
-                            bairros: viewModel.bairros,
-                            onChanged: (bairro) => viewModel.bairroSelecionado = bairro,
-                          );
-                        }),
-                        MyTextFormWidget(iconData: Icons.pin_drop, label: 'Endereço', controller: _enderecoController),
-                        MyTextFormWidget(
-                            iconData: Icons.room_outlined, label: 'Google Maps', controller: _googleMapsController),
                         Padding(
                           padding: const EdgeInsets.all(36.0),
                           child: SizedBox(
@@ -133,7 +113,7 @@ class _CadastrarContatoSimplesViewState extends State<CadastrarContatoSimplesVie
     setState(() {
       loading = true;
     });
-    await viewModel.cadastrar(CadastroPessoaDto(
+    await viewModel.cadastrar(CadastroContatoCompletoDto(
       nome: _nomeController?.text ?? 'CADASTRO INCOMPLETO',
       grupo: _grupoController?.text,
       telefone: _contatoController?.text,
