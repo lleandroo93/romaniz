@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:romaniz/constants.dart';
 import 'package:romaniz/views/home/agenda/agenda_view.dart';
 import 'package:romaniz/views/home/cadastrar_evento/cadastrar_evento_view.dart';
@@ -6,6 +7,8 @@ import 'package:romaniz/views/home/contatos/cadastro/completo/cadastrar_contato_
 import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_view.dart';
 import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_view.dart';
 import 'package:romaniz/views/home/dashboard/dashboard_view.dart';
+import 'package:romaniz/views/home/home_mobile_view.dart';
+import 'package:romaniz/views/home/home_tablet_view.dart';
 import 'package:romaniz/views/home/sidebar_view.dart';
 
 class HomeView extends StatefulWidget {
@@ -29,18 +32,16 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          SideBar(onSelectedRoute: _onSelectedRoute),
-          Expanded(
-            child: Navigator(
-              key: _navigatorKey,
-              initialRoute: DashboardView.route,
-              onGenerateRoute: _onGenerateRoute,
-            ),
-          )
-        ],
+    return ScreenTypeLayout(
+      mobile: HomeMobileView(
+        navigatorKey: _navigatorKey,
+        onGenerateRoute: _onGenerateRoute,
+        onSelectedRoute: _onSelectedRoute,
+      ),
+      tablet: HomeTabletView(
+        navigatorKey: _navigatorKey,
+        onGenerateRoute: _onGenerateRoute,
+        onSelectedRoute: _onSelectedRoute,
       ),
     );
   }
