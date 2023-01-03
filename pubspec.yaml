@@ -24,6 +24,7 @@ dependencies:
   dropdown_search: ^5.0.3
   google_fonts: ^3.0.1
   flutter_typeahead: ^4.1.1
+  responsive_builder: ^0.4.3
 
 dev_dependencies:
   flutter_test:
