@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:responsive_builder/responsive_builder.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:romaniz/constants.dart';
 import 'package:romaniz/views/home/contatos/cadastro/simples/cadastrar_contato_simples_view.dart';
-import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_mobile_view.dart';
-import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_tablet_view.dart';
-import 'package:romaniz/views/home/contatos/pesquisa/pesquisa_contatos_viewmodel.dart';
+import 'package:romaniz/views/home/contatos/pesquisa/contatos_table_data.dart';
 
-class PesquisarContatosView extends StatelessWidget {
-  static const String route = 'contatos';
-
-  const PesquisarContatosView({super.key});
+class PesquisarContatosTablet extends StatelessWidget {
+  const PesquisarContatosTablet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Provider<PesquisaContatosViewModel>(
-      create: (context) => PesquisaContatosViewModel(),
-      child: ScreenTypeLayout(
-        mobile: PesquisarContatosMobile(),
-        tablet: PesquisarContatosTablet(),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 52, vertical: 46),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Seus contatos',
+            style: GoogleFonts.roboto(
+              color: KColors.black,
+              fontWeight: FontWeight.w500,
+              fontSize: 40,
+            ),
+          ),
+          BotaoNovoContato(),
+          SizedBox(height: 20),
+          ContatosTableData(),
+        ],
       ),
     );
   }
