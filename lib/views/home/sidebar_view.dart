@@ -17,7 +17,7 @@ class SideBar extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints.tightFor(width: 300, height: double.infinity),
       child: Container(
-        color: KColors.blue_transparent,
+        color: KColors.blueTransparent,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,

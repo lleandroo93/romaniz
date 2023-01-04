@@ -2,34 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:romaniz/model/cidade.dart';
 
-class Endpoints {
-  // static const BASE_URL = 'http://localhost:8080';
-  static const BASE_URL = 'https://ancient-refuge-23751.herokuapp.com';
-  static const uf_id = '0ff948e2-2f7a-4290-99b5-bf4a45052ed9'; // Roraima
+const bool isProduction = bool.fromEnvironment('dart.vm.product');
+final navigatorKey = GlobalKey<NavigatorState>();
 
-  static Uri get pessoa => Uri.parse('$BASE_URL/pessoa');
-  static Uri get cadastroContatoSimples => Uri.parse('$BASE_URL/pessoa/simples');
-  static Uri get cadastroContatoCompleto => Uri.parse('$BASE_URL/pessoa/completo');
-  static Uri get listarCidades => Uri.parse('$BASE_URL/uf/$uf_id/cidade');
-  static Uri get listarEventos => Uri.parse('$BASE_URL/evento');
-  static Uri get criarEventos => Uri.parse('$BASE_URL/evento');
-  static Uri alterarEvento(String id) => Uri.parse('$BASE_URL/evento/$id');
-  static Uri listarBairrosPorCidade(Cidade cidade) => Uri.parse('$BASE_URL/cidade/${cidade.id}/bairro');
+class Endpoints {
+  // static const BASE_URL = ;
+  static const _prodUrl = 'https://ancient-refuge-23751.herokuapp.com';
+  static const _devUrl = 'http://localhost:8080';
+
+  static const _baseUrl = isProduction ? _prodUrl : _devUrl;
+  static const ufId = '0ff948e2-2f7a-4290-99b5-bf4a45052ed9'; // Roraima
+
+  static Uri get pessoa => Uri.parse('$_baseUrl/pessoa');
+  static Uri get cadastroContatoSimples => Uri.parse('$_baseUrl/pessoa/simples');
+  static Uri get cadastroContatoCompleto => Uri.parse('$_baseUrl/pessoa/completo');
+  static Uri get listarCidades => Uri.parse('$_baseUrl/uf/$ufId/cidade');
+  static Uri get listarEventos => Uri.parse('$_baseUrl/evento');
+  static Uri get criarEventos => Uri.parse('$_baseUrl/evento');
+  static Uri alterarEvento(String id) => Uri.parse('$_baseUrl/evento/$id');
+  static Uri listarBairrosPorCidade(Cidade cidade) => Uri.parse('$_baseUrl/cidade/${cidade.id}/bairro');
 
   static Uri pessoaSearch({required String criteria, int? limit}) =>
-      Uri.parse('$BASE_URL/pessoa/search?criteria=$criteria&limit=$limit');
+      Uri.parse('$_baseUrl/pessoa/search?criteria=$criteria&limit=$limit');
 
   static Uri grupoSearch({required String criteria, int? limit}) =>
-      Uri.parse('$BASE_URL/grupo/search?criteria=$criteria&limit=$limit');
+      Uri.parse('$_baseUrl/grupo/search?criteria=$criteria&limit=$limit');
 }
 
 abstract class KColors {
   static const Color black = Color(0xff333333);
-  static const Color blue_transparent = Color(0x127bb0d7);
+  static const Color blueTransparent = Color(0x127bb0d7);
 }
 
 abstract class KTextStyles {
   static TextStyle titulo = GoogleFonts.roboto(fontSize: 40, fontWeight: FontWeight.w500);
 }
-
-final navigatorKey = GlobalKey<NavigatorState>();
